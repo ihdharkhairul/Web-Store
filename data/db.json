@@ -1,0 +1,424 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Semen Portland Composite 50kg",
+      "cat": "Semen & Agregat",
+      "brand": "Tiga Roda",
+      "color": "#3C6E8F",
+      "price": 68000,
+      "unit": "/sak",
+      "stock": 120,
+      "rating": 4.8,
+      "reviews": 214,
+      "desc": "Semen serbaguna untuk konstruksi umum, cocok untuk cor, plester, dan pasangan bata.",
+      "specs": [
+        [
+          "Tipe",
+          "PCC (Portland Composite)"
+        ],
+        [
+          "Kuat Tekan (28 hari)",
+          "≥ 350 kg/cm²"
+        ],
+        [
+          "Waktu Ikat Awal",
+          "45 menit"
+        ],
+        [
+          "Sertifikasi",
+          "SNI 15-7064-2004"
+        ]
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Pasir Beton Cor",
+      "cat": "Semen & Agregat",
+      "brand": "Lokal Cirebon",
+      "color": "#3C6E8F",
+      "price": 325000,
+      "unit": "/m³",
+      "stock": 40,
+      "rating": 4.6,
+      "reviews": 87,
+      "desc": "Pasir sudah diayak, bebas lumpur, siap pakai untuk campuran beton cor.",
+      "specs": [
+        [
+          "Jenis",
+          "Pasir cor ayak"
+        ],
+        [
+          "Kandungan Lumpur",
+          "< 5%"
+        ],
+        [
+          "Kemasan",
+          "Curah per m³"
+        ],
+        [
+          "Asal",
+          "Cirebon"
+        ]
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Besi Beton Ulir 10mm",
+      "cat": "Besi & Baja",
+      "brand": "Krakatau Steel",
+      "color": "#E15426",
+      "price": 98000,
+      "unit": "/batang",
+      "stock": 500,
+      "rating": 4.9,
+      "reviews": 301,
+      "desc": "Besi ulir untuk struktur beton bertulang, mengikuti standar SNI.",
+      "specs": [
+        [
+          "Diameter",
+          "10 mm"
+        ],
+        [
+          "Panjang",
+          "12 m/batang"
+        ],
+        [
+          "Grade",
+          "BjTS 420"
+        ],
+        [
+          "Sertifikasi",
+          "SNI 2052:2017"
+        ]
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Besi Hollow Galvanis 4x4",
+      "cat": "Besi & Baja",
+      "brand": "Gunung Garuda",
+      "color": "#E15426",
+      "price": 76000,
+      "unit": "/batang",
+      "stock": 8,
+      "rating": 4.5,
+      "reviews": 64,
+      "desc": "Besi hollow galvanis untuk rangka pagar, kanopi, dan partisi.",
+      "specs": [
+        [
+          "Ukuran",
+          "4 x 4 cm"
+        ],
+        [
+          "Tebal",
+          "1.2 mm"
+        ],
+        [
+          "Panjang",
+          "6 m/batang"
+        ],
+        [
+          "Lapisan",
+          "Galvanis anti karat"
+        ]
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Cat Tembok Interior 25kg",
+      "cat": "Cat & Finishing",
+      "brand": "Avian",
+      "color": "#8C6E4E",
+      "price": 410000,
+      "unit": "/pail",
+      "stock": 35,
+      "rating": 4.7,
+      "reviews": 158,
+      "desc": "Cat tembok interior warna putih, formula anti jamur dan mudah dibersihkan.",
+      "specs": [
+        [
+          "Warna",
+          "Putih"
+        ],
+        [
+          "Daya Sebar",
+          "±12 m²/kg"
+        ],
+        [
+          "Sifat",
+          "Anti jamur, cuci"
+        ],
+        [
+          "Kemasan",
+          "25 kg/pail"
+        ]
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Cat Kayu & Besi 5kg",
+      "cat": "Cat & Finishing",
+      "brand": "Avian",
+      "color": "#8C6E4E",
+      "price": 185000,
+      "unit": "/kaleng",
+      "stock": 60,
+      "rating": 4.4,
+      "reviews": 92,
+      "desc": "Cat kilap tinggi untuk permukaan kayu dan besi, tahan cuaca luar ruang.",
+      "specs": [
+        [
+          "Jenis",
+          "Synthetic enamel"
+        ],
+        [
+          "Kilap",
+          "Glossy"
+        ],
+        [
+          "Daya Sebar",
+          "±10 m²/kg"
+        ],
+        [
+          "Kemasan",
+          "5 kg/kaleng"
+        ]
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Keramik Lantai 60x60 Motif Marmer",
+      "cat": "Keramik & Lantai",
+      "brand": "Roman",
+      "color": "#5B7553",
+      "price": 79000,
+      "unit": "/m²",
+      "stock": 300,
+      "rating": 4.6,
+      "reviews": 203,
+      "desc": "Keramik lantai motif marmer, permukaan anti licin untuk area rumah.",
+      "specs": [
+        [
+          "Ukuran",
+          "60 x 60 cm"
+        ],
+        [
+          "Permukaan",
+          "Matte anti licin"
+        ],
+        [
+          "Motif",
+          "Marmer"
+        ],
+        [
+          "Grade",
+          "KW1"
+        ]
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Granit Lantai 80x80 Glossy",
+      "cat": "Keramik & Lantai",
+      "brand": "Mulia",
+      "color": "#5B7553",
+      "price": 165000,
+      "unit": "/m²",
+      "stock": 8,
+      "rating": 4.8,
+      "reviews": 76,
+      "desc": "Granit finishing glossy untuk ruang tamu dan area formal.",
+      "specs": [
+        [
+          "Ukuran",
+          "80 x 80 cm"
+        ],
+        [
+          "Permukaan",
+          "Glossy"
+        ],
+        [
+          "Ketebalan",
+          "10 mm"
+        ],
+        [
+          "Grade",
+          "KW1"
+        ]
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Pipa PVC 4 inch Kelas AW",
+      "cat": "Pipa & Sanitasi",
+      "brand": "Rucika",
+      "color": "#7A6FA6",
+      "price": 112000,
+      "unit": "/batang",
+      "stock": 150,
+      "rating": 4.7,
+      "reviews": 139,
+      "desc": "Pipa PVC untuk saluran pembuangan, tekanan kerja tinggi.",
+      "specs": [
+        [
+          "Diameter",
+          "4 inch"
+        ],
+        [
+          "Panjang",
+          "4 m/batang"
+        ],
+        [
+          "Kelas",
+          "AW"
+        ],
+        [
+          "Sertifikasi",
+          "SNI 06-0084-2002"
+        ]
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Kloset Duduk Standar",
+      "cat": "Pipa & Sanitasi",
+      "brand": "Toto",
+      "color": "#7A6FA6",
+      "price": 895000,
+      "unit": "/unit",
+      "stock": 20,
+      "rating": 4.9,
+      "reviews": 58,
+      "desc": "Kloset duduk lengkap dengan dudukan dan tutup, hemat air.",
+      "specs": [
+        [
+          "Tipe",
+          "Duduk, single flush"
+        ],
+        [
+          "Kapasitas Flush",
+          "6 liter"
+        ],
+        [
+          "Kelengkapan",
+          "Dudukan + tutup"
+        ],
+        [
+          "Warna",
+          "Putih"
+        ]
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Kabel Listrik NYM 2x1.5",
+      "cat": "Listrik",
+      "brand": "Eterna",
+      "color": "#C79A1E",
+      "price": 245000,
+      "unit": "/roll",
+      "stock": 45,
+      "rating": 4.6,
+      "reviews": 112,
+      "desc": "Kabel listrik untuk instalasi rumah tinggal, isolasi ganda.",
+      "specs": [
+        [
+          "Ukuran",
+          "2 x 1.5 mm²"
+        ],
+        [
+          "Panjang",
+          "50 m/roll"
+        ],
+        [
+          "Tegangan",
+          "300/500V"
+        ],
+        [
+          "Sertifikasi",
+          "SNI"
+        ]
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Genteng Beton Flat",
+      "cat": "Atap & Rangka",
+      "brand": "Monier",
+      "color": "#B5533C",
+      "price": 9500,
+      "unit": "/pcs",
+      "stock": 25,
+      "rating": 4.5,
+      "reviews": 41,
+      "desc": "Genteng beton flat warna abu-abu, tahan bocor dan minim perawatan.",
+      "specs": [
+        [
+          "Warna",
+          "Abu-abu"
+        ],
+        [
+          "Bahan",
+          "Beton pres"
+        ],
+        [
+          "Berat",
+          "±4.2 kg/pcs"
+        ],
+        [
+          "Kebutuhan",
+          "±10 pcs/m²"
+        ]
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Semen 1 Plush",
+      "cat": "Semen",
+      "brand": "One Plush",
+      "color": "#8A8D92",
+      "price": 40000,
+      "unit": "Sak",
+      "stock": 99,
+      "rating": 0,
+      "reviews": 0,
+      "desc": "",
+      "specs": []
+    }
+  ],
+  "orders": [
+    {
+      "id": 1789394824087,
+      "orderId": "A97-158421",
+      "createdAt": "2026-09-14T14:07:04.087Z",
+      "status": "selesai",
+      "customerName": "Muhammad Khairul Ihdhar (Khairul)",
+      "phone": "085246360541",
+      "city": "Sulawesi Tenggara",
+      "address": "Dusun Garangga, Desa Lanto, Kecamatan Mawasangka Tengah, Kabupaten Buton Tengah, Provinsi Sulawesi Tenggara 93764",
+      "paymentMethod": "transfer",
+      "items": [
+        {
+          "productId": 8,
+          "name": "Granit Lantai 80x80 Glossy",
+          "unit": "/m²",
+          "price": 165000,
+          "qty": 1
+        },
+        {
+          "productId": 13,
+          "name": "Semen 1 Plush",
+          "unit": "Sak",
+          "price": 40000,
+          "qty": 1
+        }
+      ],
+      "subtotal": 205000,
+      "shipping": 25000,
+      "tax": 15375,
+      "total": 245375
+    }
+  ],
+  "nextProductId": 14
+}

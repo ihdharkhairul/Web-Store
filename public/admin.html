@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Ayat 97</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#17181A; --ink-soft:#54575C; --muted:#8A8D92; --line:#E7E5E1;
+    --bg:#FBFAF8; --card:#FFFFFF; --header:#14151A;
+    --rust:#C15A2E; --rust-dark:#A24A24; --green:#2E9E52; --amber:#D98A17; --red:#C0392B;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--ink); font-family:'Inter',sans-serif; line-height:1.5;}
+  h1,h2,h3{font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; letter-spacing:-0.4px;}
+  button{font-family:inherit; cursor:pointer; border:none;}
+  input,select{font-family:inherit;}
+  a{color:inherit;}
+
+  /* PIN gate */
+  #pinGate{position:fixed; inset:0; background:var(--header); z-index:200; display:flex; align-items:center; justify-content:center;}
+  .pin-box{background:#1D1F26; border-radius:14px; padding:34px 30px; width:100%; max-width:320px; text-align:center;}
+  .pin-box .brand-mark{width:44px; height:44px; background:var(--rust); border-radius:10px; display:flex; align-items:center; justify-content:center; font-weight:800; color:#fff; margin:0 auto 14px;}
+  .pin-box h2{color:#fff; font-size:18px; margin-bottom:6px;}
+  .pin-box p{color:#8A8D92; font-size:13px; margin-bottom:18px;}
+  .pin-box input{width:100%; text-align:center; letter-spacing:6px; font-size:18px; padding:12px; border-radius:9px; border:1px solid rgba(255,255,255,0.15); background:#14151A; color:#fff; margin-bottom:12px;}
+  .pin-box button{width:100%; background:var(--rust); color:#fff; padding:12px; border-radius:9px; font-weight:700; font-size:14px;}
+  .pin-error{color:#E6836A; font-size:12.5px; margin-top:10px; min-height:16px;}
+
+  header{background:var(--header); border-bottom:1px solid rgba(255,255,255,0.08);}
+  .header-inner{max-width:1180px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; gap:14px;}
+  .brand{display:flex; align-items:center; gap:10px;}
+  .brand-mark{width:32px; height:32px; background:var(--rust); border-radius:8px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px; color:#fff;}
+  .brand-text{color:#fff; font-weight:800; font-size:16px;}
+  .brand-text small{display:block; font-weight:500; color:#8A8D92; font-size:11px;}
+  header nav{margin-left:auto; display:flex; gap:6px;}
+  header nav a{color:#B9BABE; font-size:13px;}
+  .tab-btn{padding:9px 16px; border-radius:8px; font-size:13.5px; font-weight:600; color:#B9BABE; background:transparent;}
+  .tab-btn.active{background:var(--rust); color:#fff;}
+
+  .wrap{max-width:1180px; margin:0 auto; padding:28px 24px 60px;}
+  .page-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:18px; flex-wrap:wrap; gap:8px;}
+  .page-head h1{font-size:22px;}
+  .page-head span{font-size:13px; color:var(--muted);}
+  .view{display:none;}
+  .view.active{display:block;}
+
+  /* Orders queue */
+  .order-card{background:var(--card); border:1px solid var(--line); border-radius:12px; margin-bottom:14px; overflow:hidden;}
+  .order-top{display:flex; align-items:center; gap:12px; padding:14px 18px; border-bottom:1px solid var(--line); flex-wrap:wrap;}
+  .queue-num{width:28px; height:28px; border-radius:50%; background:var(--ink); color:#fff; font-weight:700; font-size:12.5px; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .order-id{font-weight:700; font-size:14px;}
+  .order-time{font-size:12px; color:var(--muted);}
+  .status-badge{margin-left:auto; font-size:11.5px; font-weight:700; padding:5px 11px; border-radius:100px;}
+  .status-baru{background:#FDEDE6; color:var(--rust-dark);}
+  .status-diproses{background:#FFF3DA; color:#8A5D0A;}
+  .status-dikirim{background:#E3EEFC; color:#2A5DA8;}
+  .status-selesai{background:#E4F5E9; color:#1E7A3E;}
+  .status-dibatalkan{background:#F1EFEA; color:var(--muted);}
+  .order-body{padding:16px 18px; display:grid; grid-template-columns:1.1fr 1fr; gap:20px;}
+  .order-col h5{font-size:11px; text-transform:uppercase; letter-spacing:0.5px; color:var(--muted); margin-bottom:8px; font-weight:700;}
+  .order-col p{font-size:13.5px; margin-bottom:3px;}
+  .item-line{display:flex; justify-content:space-between; font-size:13px; padding:4px 0; border-bottom:1px dashed var(--line);}
+  .item-line:last-of-type{border-bottom:none;}
+  .order-total{display:flex; justify-content:space-between; font-weight:700; font-size:14.5px; margin-top:8px; padding-top:8px; border-top:1px solid var(--line);}
+  .order-foot{padding:12px 18px; border-top:1px solid var(--line); display:flex; align-items:center; gap:10px; background:#FAF9F7;}
+  .order-foot label{font-size:12.5px; color:var(--ink-soft); font-weight:600;}
+  .status-select{border:1px solid var(--line); border-radius:8px; padding:7px 10px; font-size:13px; background:#fff;}
+  .empty-state{text-align:center; padding:60px 0; color:var(--muted); font-size:14px;}
+
+  /* Products table */
+  .add-product-card{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px; margin-bottom:20px;}
+  .add-product-card h3{font-size:15px; margin-bottom:14px;}
+  .add-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:10px;}
+  .add-grid input{border:1px solid var(--line); border-radius:8px; padding:9px 11px; font-size:13px; background:#FAF9F7; width:100%;}
+  .add-product-card button{background:var(--ink); color:#fff; padding:10px 18px; border-radius:8px; font-weight:600; font-size:13px;}
+  .add-product-card button:hover{background:var(--rust);}
+
+  table{width:100%; border-collapse:collapse; background:var(--card); border:1px solid var(--line); border-radius:12px; overflow:hidden;}
+  thead th{text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; color:var(--muted); padding:11px 14px; background:#FAF9F7; border-bottom:1px solid var(--line);}
+  tbody td{padding:10px 14px; font-size:13.5px; border-bottom:1px solid var(--line); vertical-align:middle;}
+  tbody tr:last-child td{border-bottom:none;}
+  .cell-input{width:100px; border:1px solid var(--line); border-radius:7px; padding:6px 9px; font-size:13px; background:#FAF9F7;}
+  .stock-pill{font-size:11px; font-weight:700; padding:3px 9px; border-radius:100px;}
+  .save-btn{background:var(--ink); color:#fff; padding:6px 12px; border-radius:7px; font-size:12px; font-weight:600;}
+  .save-btn:hover{background:var(--rust);}
+  .del-btn{color:var(--rust); font-size:12px; font-weight:600; margin-left:8px;}
+  .toast{position:fixed; bottom:22px; left:50%; transform:translateX(-50%); background:var(--ink); color:#fff; padding:11px 20px; border-radius:9px; font-size:13.5px; opacity:0; pointer-events:none; transition:opacity .2s; z-index:300;}
+  .toast.show{opacity:1;}
+
+  @media (max-width:760px){
+    .order-body{grid-template-columns:1fr;}
+    .add-grid{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div id="pinGate">
+  <div class="pin-box">
+    <div class="brand-mark">97</div>
+    <h2>Admin Ayat 97</h2>
+    <p>Masukkan PIN admin untuk melihat pesanan dan mengatur stok/harga.</p>
+    <input type="password" id="pinInput" inputmode="numeric" placeholder="••••••" maxlength="12">
+    <button onclick="verifyPin()">Masuk</button>
+    <div class="pin-error" id="pinError"></div>
+  </div>
+</div>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-mark">97</div>
+      <div class="brand-text">AYAT 97<small>Panel Admin</small></div>
+    </div>
+    <nav>
+      <button class="tab-btn active" id="tabOrdersBtn" onclick="switchTab('orders')">Pesanan</button>
+      <button class="tab-btn" id="tabProductsBtn" onclick="switchTab('products')">Stok & Harga</button>
+    </nav>
+    <a href="/" style="font-size:13px; color:#8A8D92;">← Lihat toko</a>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ORDERS VIEW -->
+  <div class="view active" id="view-orders">
+    <div class="page-head">
+      <h1>Antrian Pesanan</h1>
+      <span id="orderCount"></span>
+    </div>
+    <div id="ordersList"></div>
+  </div>
+
+  <!-- PRODUCTS VIEW -->
+  <div class="view" id="view-products">
+    <div class="page-head">
+      <h1>Stok & Harga</h1>
+      <span id="productCount"></span>
+    </div>
+
+    <div class="add-product-card">
+      <h3>Tambah Produk / Upload Stok Baru</h3>
+      <div class="add-grid">
+        <input id="npName" placeholder="Nama produk">
+        <input id="npCat" placeholder="Kategori">
+        <input id="npBrand" placeholder="Merek">
+        <input id="npUnit" placeholder="Satuan (mis. /sak)">
+        <input id="npPrice" type="number" placeholder="Harga (Rp)">
+        <input id="npStock" type="number" placeholder="Stok awal">
+        <input id="npColor" placeholder="Warna ikon (mis. #C15A2E)">
+        <input id="npDesc" placeholder="Deskripsi singkat">
+      </div>
+      <button onclick="addProduct()">Tambah Produk</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>Produk</th><th>Merek</th><th>Harga</th><th>Stok</th><th>Status</th><th></th></tr>
+      </thead>
+      <tbody id="productsBody"></tbody>
+    </table>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  let ADMIN_PIN = null;
+  let orders = [];
+  let products = [];
+
+  async function verifyPin(){
+    const pin = document.getElementById('pinInput').value.trim();
+    const err = document.getElementById('pinError');
+    err.textContent = '';
+    if(!pin){ err.textContent = 'Isi PIN dulu.'; return; }
+    try{
+      const res = await fetch('/api/admin/verify-pin', {
+        method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({pin})
+      });
+      if(!res.ok){ err.textContent = 'PIN salah, coba lagi.'; return; }
+      ADMIN_PIN = pin;
+      document.getElementById('pinGate').style.display = 'none';
+      loadOrders();
+      loadProducts();
+    }catch(e){ err.textContent = 'Tidak bisa terhubung ke server.'; }
+  }
+  document.getElementById('pinInput').addEventListener('keydown', e=>{ if(e.key==='Enter') verifyPin(); });
+
+  function authHeaders(){ return {'Content-Type':'application/json', 'x-admin-pin': ADMIN_PIN}; }
+
+  function switchTab(tab){
+    document.getElementById('view-orders').classList.toggle('active', tab==='orders');
+    document.getElementById('view-products').classList.toggle('active', tab==='products');
+    document.getElementById('tabOrdersBtn').classList.toggle('active', tab==='orders');
+    document.getElementById('tabProductsBtn').classList.toggle('active', tab==='products');
+  }
+
+  function showToast(msg){
+    const t = document.getElementById('toast');
+    t.textContent = msg; t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'), 2200);
+  }
+
+  const fmt = n => "Rp" + Number(n).toLocaleString("id-ID");
+  const fmtTime = iso => new Date(iso).toLocaleString("id-ID", {dateStyle:'medium', timeStyle:'short'});
+  const payLabel = v => ({transfer:"Transfer Bank", cod:"Bayar di Tempat (COD)", qris:"QRIS"}[v] || v);
+
+  /* ---------------- Orders (queue, oldest/first on top) ---------------- */
+  async function loadOrders(){
+    const res = await fetch('/api/admin/orders', {headers: authHeaders()});
+    orders = await res.json();
+    renderOrders();
+  }
+
+  function renderOrders(){
+    document.getElementById('orderCount').textContent = orders.length + ' pesanan';
+    const el = document.getElementById('ordersList');
+    if(orders.length===0){
+      el.innerHTML = `<div class="empty-state">Belum ada pesanan masuk.</div>`;
+      return;
+    }
+    el.innerHTML = orders.map((o, idx)=>`
+      <div class="order-card">
+        <div class="order-top">
+          <div class="queue-num">${idx+1}</div>
+          <div>
+            <div class="order-id">${o.orderId}</div>
+            <div class="order-time">${fmtTime(o.createdAt)}</div>
+          </div>
+          <span class="status-badge status-${o.status}">${o.status}</span>
+        </div>
+        <div class="order-body">
+          <div class="order-col">
+            <h5>Dipesan oleh</h5>
+            <p><strong>${o.customerName}</strong></p>
+            <p>${o.phone}</p>
+            <p>${o.city ? o.city+' — ' : ''}${o.address}</p>
+            <p style="color:var(--muted); margin-top:6px;">Bayar: ${payLabel(o.paymentMethod)}</p>
+          </div>
+          <div class="order-col">
+            <h5>Barang dipesan</h5>
+            ${o.items.map(it=>`<div class="item-line"><span>${it.qty}× ${it.name}</span><span>${fmt(it.price*it.qty)}</span></div>`).join('')}
+            <div class="order-total"><span>Total</span><span>${fmt(o.total)}</span></div>
+          </div>
+        </div>
+        <div class="order-foot">
+          <label>Status:</label>
+          <select class="status-select" onchange="updateStatus(${o.id}, this.value)">
+            ${['baru','diproses','dikirim','selesai','dibatalkan'].map(s=>`<option value="${s}" ${s===o.status?'selected':''}>${s}</option>`).join('')}
+          </select>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  async function updateStatus(id, status){
+    const res = await fetch('/api/admin/orders/'+id, {method:'PATCH', headers: authHeaders(), body: JSON.stringify({status})});
+    if(res.ok){ showToast('Status pesanan diperbarui.'); loadOrders(); }
+    else showToast('Gagal memperbarui status.');
+  }
+
+  /* ---------------- Products (stok & harga) ---------------- */
+  async function loadProducts(){
+    const res = await fetch('/api/products');
+    products = await res.json();
+    renderProducts();
+  }
+
+  function stockPill(p){
+    if(p.stockStatus==='habis') return `<span class="stock-pill" style="background:#FBEAE6;color:var(--red);">Habis</span>`;
+    if(p.stockStatus==='low') return `<span class="stock-pill" style="background:#FFF3DA;color:#8A5D0A;">Terbatas</span>`;
+    return `<span class="stock-pill" style="background:#E4F5E9;color:var(--green);">Tersedia</span>`;
+  }
+
+  function renderProducts(){
+    document.getElementById('productCount').textContent = products.length + ' produk';
+    document.getElementById('productsBody').innerHTML = products.map(p=>`
+      <tr>
+        <td><strong>${p.name}</strong><br><span style="color:var(--muted); font-size:11.5px;">${p.cat} · ${p.unit}</span></td>
+        <td>${p.brand}</td>
+        <td><input class="cell-input" type="number" id="price-${p.id}" value="${p.price}"></td>
+        <td><input class="cell-input" type="number" id="stock-${p.id}" value="${p.stock}"></td>
+        <td>${stockPill(p)}</td>
+        <td>
+          <button class="save-btn" onclick="saveProduct(${p.id})">Simpan</button>
+          <button class="del-btn" onclick="deleteProduct(${p.id})">Hapus</button>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  async function saveProduct(id){
+    const price = Number(document.getElementById('price-'+id).value);
+    const stock = Number(document.getElementById('stock-'+id).value);
+    const res = await fetch('/api/admin/products/'+id, {
+      method:'PUT', headers: authHeaders(), body: JSON.stringify({price, stock})
+    });
+    if(res.ok){ showToast('Harga & stok disimpan.'); loadProducts(); }
+    else showToast('Gagal menyimpan perubahan.');
+  }
+
+  async function deleteProduct(id){
+    if(!confirm('Hapus produk ini dari katalog?')) return;
+    const res = await fetch('/api/admin/products/'+id, {method:'DELETE', headers: authHeaders()});
+    if(res.ok){ showToast('Produk dihapus.'); loadProducts(); }
+    else showToast('Gagal menghapus produk.');
+  }
+
+  async function addProduct(){
+    const body = {
+      name: document.getElementById('npName').value.trim(),
+      cat: document.getElementById('npCat').value.trim(),
+      brand: document.getElementById('npBrand').value.trim(),
+      unit: document.getElementById('npUnit').value.trim(),
+      price: Number(document.getElementById('npPrice').value),
+      stock: Number(document.getElementById('npStock').value),
+      color: document.getElementById('npColor').value.trim() || '#8A8D92',
+      desc: document.getElementById('npDesc').value.trim()
+    };
+    if(!body.name || !body.cat || !body.brand || !body.unit || !body.price || body.stock===''){
+      showToast('Lengkapi semua kolom wajib dulu.'); return;
+    }
+    const res = await fetch('/api/admin/products', {method:'POST', headers: authHeaders(), body: JSON.stringify(body)});
+    if(res.ok){
+      showToast('Produk baru ditambahkan.');
+      ['npName','npCat','npBrand','npUnit','npPrice','npStock','npColor','npDesc'].forEach(id=>document.getElementById(id).value='');
+      loadProducts();
+    } else {
+      const data = await res.json();
+      showToast(data.error || 'Gagal menambah produk.');
+    }
+  }
+</script>
+
+</body>
+</html>
